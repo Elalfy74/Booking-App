@@ -1,0 +1,93 @@
+/* Heading Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+/* Body Font */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .hero-wrapper {
+    @apply overlay relative flex h-[40rem] bg-hero bg-cover bg-center py-16 md:items-center;
+  }
+  .overlay {
+    @apply before:absolute before:left-0 before:top-0 before:h-full before:w-full before:bg-black before:bg-opacity-10;
+  }
+  .main-border {
+    @apply border border-[#1F2937] border-opacity-10;
+  }
+  .main-grid {
+    @apply grid gap-8 grid-cols-4-auto;
+  }
+  .section {
+    @apply container py-section;
+  }
+  .input {
+    @apply rounded-md px-5 py-2.5 text-gray-700 placeholder:text-sm placeholder:text-mainGray;
+  }
+  .main-input {
+    @apply input bg-[#F6F7F9];
+  }
+  .input-sm {
+    @apply py-2;
+  }
+  .search-input {
+    @apply main-border main-input;
+  }
+  .h2 {
+    @apply mb-5 text-3xl font-semibold text-mainBlack;
+  }
+  .center {
+    @apply flex items-center justify-center;
+  }
+}
+
+@layer base {
+  html {
+    font-family: "DM Sans", sans-serif;
+  }
+  body {
+    @apply bg-[#fafafc];
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  label,
+  button {
+    font-family: "Poppins", sans-serif;
+  }
+  h2 {
+    @apply mb-5 text-3xl font-semibold text-mainBlack md:text-4xl;
+  }
+  h3 {
+    @apply mt-3 text-xl font-semibold md:text-2xl;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    @apply focus:outline-none;
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.custom-swiper-grid {
+  height: calc((100% - 30px) / 2) !important;
+}
