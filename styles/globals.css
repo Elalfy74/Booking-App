@@ -9,7 +9,7 @@
 
 @layer components {
   .hero-wrapper {
-    @apply overlay relative flex h-[40rem] bg-hero bg-cover bg-center py-16 md:items-center;
+    @apply overlay relative flex h-[30rem] bg-hero bg-cover bg-center py-16 md:items-center 2xl:h-[40rem];
   }
   .overlay {
     @apply before:absolute before:left-0 before:top-0 before:h-full before:w-full before:bg-black before:bg-opacity-10;
@@ -67,7 +67,8 @@
 
   input[type="text"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],
+  textarea {
     @apply focus:outline-none;
   }
 }
@@ -90,4 +91,19 @@
 }
 .custom-swiper-grid {
   height: calc((100% - 30px) / 2) !important;
+}
+
+@media screen and (min-width: 768px) {
+  .grid-item {
+    height: calc((100% - 30px) / 3) !important;
+  }
+}
+
+.grid-swiper .swiper-wrapper {
+  gap: 15px;
+  justify-content: space-between;
+}
+
+svg.star-svg {
+  display: inline;
 }
