@@ -1,16 +1,15 @@
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/grid";
-import "swiper/css/free-mode";
-
-// import required modules
 import { FreeMode, Grid } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { ICityWCountry } from "@/types/cities";
+
 import City from "./city";
 
-const AllCities = () => {
-  const arr = new Array(8).fill("");
+type FeaturedCitiesPros = {
+  featuredCities: ICityWCountry[];
+};
+
+const FeaturedCities = ({ featuredCities }: FeaturedCitiesPros) => {
   return (
     <section className="container -mt-20 pb-section md:mt-0 md:py-6">
       <h2 className="text-center text-secondBlack">
@@ -41,9 +40,9 @@ const AllCities = () => {
         }}
         modules={[Grid, FreeMode]}
       >
-        {arr.map((item, i) => (
-          <SwiperSlide key={i} className="custom-swiper-grid">
-            <City />
+        {featuredCities.map((fCity) => (
+          <SwiperSlide key={fCity._id} className="featured-cities-swiper">
+            <City city={fCity} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -51,4 +50,4 @@ const AllCities = () => {
   );
 };
 
-export default AllCities;
+export default FeaturedCities;

@@ -1,5 +1,5 @@
-export { default as AllCities } from "./all-cities/all-cities";
 export { default as ExploreTheWorld } from "./explore-the-world/explore-the-world";
+export { default as FeaturedCities } from "./featured-cities/featured-cities";
 export { default as FeatuedDestinations } from "./featured-destinations/featured-destinations";
 export { default as Hero } from "./hero/hero";
 export { default as TopTour } from "./top-tour/top-tour";

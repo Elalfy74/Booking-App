@@ -1,3 +1,5 @@
+import { forwardRef } from "react";
+
 type ButtonProps = React.ComponentProps<"button"> & {
   variant?: "primary" | "black" | "default";
   fullWidth?: Boolean;
@@ -5,7 +7,7 @@ type ButtonProps = React.ComponentProps<"button"> & {
   as?: "span";
 };
 
-const Button = (props: ButtonProps) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
     variant = "primary",
     size = "md",
@@ -22,18 +24,20 @@ const Button = (props: ButtonProps) => {
 
   if (as === "span") {
     return (
-      <span {...rest} className={allStyles}>
+      <span {...rest} className={allStyles} ref={ref}>
         {children}
       </span>
     );
   } else {
     return (
-      <button {...rest} className={allStyles}>
+      <button {...rest} className={allStyles} ref={ref}>
         {children}
       </button>
     );
   }
-};
+});
+
+Button.displayName = "Button";
 
 export default Button;
 

@@ -2,13 +2,18 @@ import "swiper/css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { ICountry } from "@/types/countries";
+
 import Heading from "../section-heading";
 import SingleTopTour from "./single-top-tour";
 
-const TopTour = () => {
-  const array = new Array(6).fill("");
+type TopTourProps = {
+  featuredCountries: ICountry[];
+};
+
+const TopTour = ({ featuredCountries }: TopTourProps) => {
   return (
-    <section className="section relative">
+    <section className="relative section">
       <Heading title="Top Tour" desc="keep calm & tarvel on" />
       <div className="h-[400px] text-white">
         <Swiper
@@ -25,9 +30,9 @@ const TopTour = () => {
             },
           }}
         >
-          {array.map((item, i) => (
-            <SwiperSlide key={i}>
-              <SingleTopTour />
+          {featuredCountries.map((fCountry) => (
+            <SwiperSlide key={fCountry._id}>
+              <SingleTopTour country={fCountry} />
             </SwiperSlide>
           ))}
         </Swiper>
