@@ -5,11 +5,11 @@ import { ICityWCountry } from "@/types/cities";
 
 import City from "./city";
 
-type FeaturedCitiesPros = {
-  featuredCities: ICityWCountry[];
+type CitiesPros = {
+  cities: ICityWCountry[];
 };
 
-const FeaturedCities = ({ featuredCities }: FeaturedCitiesPros) => {
+const FeaturedCities = ({ cities }: CitiesPros) => {
   return (
     <section className="container -mt-20 pb-section md:mt-0 md:py-6">
       <h2 className="text-center text-secondBlack">
@@ -40,9 +40,9 @@ const FeaturedCities = ({ featuredCities }: FeaturedCitiesPros) => {
         }}
         modules={[Grid, FreeMode]}
       >
-        {featuredCities.map((fCity) => (
-          <SwiperSlide key={fCity._id} className="featured-cities-swiper">
-            <City city={fCity} />
+        {cities.map((city) => (
+          <SwiperSlide key={city._id} className="featured-cities-swiper">
+            <City city={city} />
           </SwiperSlide>
         ))}
       </Swiper>

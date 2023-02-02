@@ -1,10 +1,17 @@
 import axios from "../lib/axios";
 
 type GetCitiesParams = {
-  featured: boolean;
-  country: boolean;
+  featured?: boolean;
+  limit?: number;
+  country?: boolean;
 };
 
-export function getAllCitiesOrFeatured({ featured, country }: GetCitiesParams) {
-  return axios.get(`/cities?featured=${featured}&country=${country}`);
+export function getAllCitiesOrFeatured({
+  featured,
+  country,
+  limit,
+}: GetCitiesParams) {
+  return axios.get(
+    `/cities?featured=${featured}&country=${country}&limit=${limit}`
+  );
 }

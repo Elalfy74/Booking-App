@@ -16,7 +16,7 @@ const City = ({ city }: CityProps) => {
         alt="city img"
         placeholder="blur"
         blurDataURL="https://via.placeholder.com/80?text"
-        className="w-20 h-20 rounded-xl"
+        className="object-cover w-20 h-20 rounded-xl"
       />
       <h3 className="text-sm ">
         {city.name}, {city.country.name}
