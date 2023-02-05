@@ -4,16 +4,15 @@ import { Card } from "@/components/ui";
 
 const Destination = ({ img, name }: { img: string; name: string }) => {
   return (
-    <Card className="relative h-full overflow-hidden overlay">
+    <Card className="overlay relative h-full overflow-hidden">
       <Image
         width={900}
         height={250}
         src={img}
         alt="city"
-        blurDataURL="https://via.placeholder.com/700x250?text"
-        className="object-cover w-full h-full "
+        className="h-full w-full object-cover "
       />
-      <h3 className="absolute text-white left-4 bottom-4">{name}</h3>
+      <h3 className="absolute left-4 bottom-4 text-white">{name}</h3>
     </Card>
   );
 };

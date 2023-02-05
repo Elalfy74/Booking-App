@@ -25,7 +25,7 @@
     @apply border border-[#1F2937] border-opacity-10;
   }
   .main-grid {
-    @apply grid gap-8 grid-cols-4-auto;
+    @apply grid grid-cols-4-auto gap-8;
   }
   .section {
     @apply container py-section;
@@ -107,8 +107,11 @@
 }
 
 .grid-swiper .swiper-wrapper {
-  gap: 15px;
   justify-content: space-between;
+}
+
+.grid-swiper .swiper-wrapper .swiper-slide {
+  margin-top: 0px !important;
 }
 
 svg.star-svg {

@@ -13,25 +13,28 @@ type TopTourProps = {
 
 const TopTour = ({ featuredCountries }: TopTourProps) => {
   return (
-    <section className="relative section">
+    <section className="section relative">
       <Heading title="Top Tour" desc="keep calm & tarvel on" />
       <div className="h-[400px] text-white">
         <Swiper
-          slidesPerView={1.5}
+          slidesPerView="auto"
           spaceBetween={20}
           breakpoints={{
             640: {
-              slidesPerView: 2,
               spaceBetween: 20,
             },
             768: {
-              slidesPerView: 3,
               spaceBetween: 30,
             },
           }}
         >
           {featuredCountries.map((fCountry) => (
-            <SwiperSlide key={fCountry._id}>
+            <SwiperSlide
+              key={fCountry._id}
+              style={{
+                width: 400,
+              }}
+            >
               <SingleTopTour country={fCountry} />
             </SwiperSlide>
           ))}

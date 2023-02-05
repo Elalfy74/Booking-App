@@ -1,17 +1,30 @@
 import axios from "../lib/axios";
+import { Params } from "./utils";
 
 type GetCitiesParams = {
-  featured?: boolean;
+  isFeatured?: boolean;
   limit?: number;
-  country?: boolean;
+  withCountry?: boolean;
 };
 
-export function getAllCitiesOrFeatured({
-  featured,
-  country,
-  limit,
-}: GetCitiesParams) {
-  return axios.get(
-    `/cities?featured=${featured}&country=${country}&limit=${limit}`
-  );
+type CityParams = Params & {
+  withCountry?: boolean;
+};
+
+export function getCities(options: GetCitiesParams) {
+  const { isFeatured, withCountry, limit = 6 } = options;
+
+  const params: CityParams = {
+    filter: {},
+    withCountry: withCountry,
+    range: [1, limit],
+  };
+
+  if (String(isFeatured)) {
+    params.filter.isFeatured = isFeatured;
+  }
+
+  return axios.get(`/cities`, {
+    params,
+  });
 }

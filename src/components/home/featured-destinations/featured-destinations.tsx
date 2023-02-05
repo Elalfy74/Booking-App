@@ -15,7 +15,7 @@ const FeaturedDestinations = ({ featuredCities }: FeaturedCitiesPros) => {
         desc=" Popular destinations open to visitors from indonesia"
       />
       <div className=" grid h-auto grid-cols-1 flex-col gap-6 md:h-[600px] md:grid-cols-3 md:grid-rows-9">
-        <div className=" md:col-span-2 md:row-span-4">
+        <div className="md:col-span-2 md:row-span-4">
           <Destination
             img={featuredCities[0].photos[0]}
             name={featuredCities[0].name}

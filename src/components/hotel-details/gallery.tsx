@@ -15,6 +15,7 @@ const Gallery = () => {
       <Swiper
         className="grid-swiper"
         slidesPerView={1}
+        spaceBetween={10}
         grid={{
           rows: 1,
         }}
@@ -35,28 +36,28 @@ const Gallery = () => {
           <img
             alt="hotel-details"
             src="https://placeimg.com/800/600/arch"
-            className="object-cover w-full h-full rounded-l-xl"
+            className="h-full w-full rounded-2xl object-cover md:rounded-none md:rounded-l-2xl"
           />
         </SwiperSlide>
         <SwiperSlide className="grid-item">
           <img
             alt="hotel-details"
             src="https://placeimg.com/400/180/arch"
-            className="object-cover w-full h-full rounded-tr-xl"
+            className="h-full w-full rounded-2xl object-cover md:rounded-none md:rounded-tr-2xl"
           />
         </SwiperSlide>
         <SwiperSlide className="grid-item ">
           <img
             alt="hotel-details"
             src="https://placeimg.com/400/180/arch"
-            className="object-cover w-full h-full "
+            className="h-full w-full rounded-2xl object-cover md:rounded-none "
           />
         </SwiperSlide>
         <SwiperSlide className="grid-item">
           <img
             alt="hotel-details"
             src="https://placeimg.com/400/180/arch"
-            className="object-cover w-full h-full rounded-br-xl"
+            className="h-full w-full rounded-2xl object-cover md:rounded-none md:rounded-br-2xl"
           />
         </SwiperSlide>
       </Swiper>

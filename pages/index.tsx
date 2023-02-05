@@ -1,7 +1,7 @@
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import { getAllCitiesOrFeatured } from "src/apis/cities";
-import { getAllCountriesOrFeatured } from "src/apis/countries";
 
+import { getCities } from "@/apis/cities";
+import { getCountries } from "@/apis/countries";
 import {
   CitiesList,
   ExploreTheWorld,
@@ -41,18 +41,19 @@ export const getStaticProps: GetStaticProps<{
   featuredCities: ICity[];
   featuredCountries: ICountry[];
 }> = async (context) => {
-  const citiesReq = getAllCitiesOrFeatured({
-    country: true,
-    featured: false,
+  const citiesReq = getCities({
+    isFeatured: false,
+    withCountry: true,
     limit: 6,
   });
 
-  const featuredCitiesReq = getAllCitiesOrFeatured({
-    featured: true,
+  const featuredCitiesReq = getCities({
+    isFeatured: true,
   });
 
-  const featuredCountriesReq = getAllCountriesOrFeatured({
-    featured: true,
+  const featuredCountriesReq = getCountries({
+    isFeatured: true,
+    limit: 6,
   });
 
   const response = await Promise.all([
@@ -64,6 +65,7 @@ export const getStaticProps: GetStaticProps<{
   const cities: ICityWCountry[] = response[0].data;
   const featuredCities: ICity[] = response[1].data;
   const featuredCountries: ICountry[] = response[2].data;
+
   return {
     props: {
       cities,
