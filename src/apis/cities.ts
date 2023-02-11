@@ -20,7 +20,7 @@ export function getCities(options: GetCitiesParams) {
     range: [1, limit],
   };
 
-  if (String(isFeatured)) {
+  if (isFeatured !== undefined) {
     params.filter.isFeatured = isFeatured;
   }
 

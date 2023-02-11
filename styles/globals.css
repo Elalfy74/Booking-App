@@ -7,6 +7,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Container Padding
+  DEFAULT: "1rem"
+  sm: "2rem"
+  lg: "4rem"
+  xl: "5rem"
+  "2xl": "6rem" */
+
 @layer components {
   .hero-wrapper {
     @apply overlay relative flex h-[30rem] bg-hero bg-cover bg-center py-16 md:items-center 2xl:h-[40rem];
@@ -29,6 +36,13 @@
   }
   .section {
     @apply container py-section;
+  }
+  /* Same As Container but without pr in small screens*/
+  .swapper-container {
+    @apply container pr-0 sm:pr-[2rem] lg:pr-[4rem] xl:pr-[5rem] 2xl:pr-[6rem];
+  }
+  .section-swapper {
+    @apply section swapper-container;
   }
   .input {
     @apply rounded-md px-5 py-2.5 text-gray-700 placeholder:text-sm placeholder:text-mainGray;

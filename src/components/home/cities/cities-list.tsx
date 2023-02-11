@@ -11,11 +11,11 @@ type CitiesPros = {
 
 const FeaturedCities = ({ cities }: CitiesPros) => {
   return (
-    <section className="container -mt-20 pb-section md:mt-0 md:py-6">
+    <section className="swapper-container -mt-20 pb-section md:mt-0 md:py-6">
       <h2 className="text-center text-secondBlack">
         Search a best place in the world
       </h2>
-      <p className="text-sm text-center text-mainGray">
+      <p className="text-center text-sm text-mainGray">
         Wherer you&apos;re looking for places for a vacation. we are here to
         Guide you
         <br />

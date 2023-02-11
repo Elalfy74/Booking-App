@@ -15,9 +15,9 @@ const SingleTopTour = ({ country }: SingleTopTourProps) => {
         height={400}
         src={country.photo}
         alt="country img"
-        className="h-full object-cover "
+        className="aspect-square h-auto w-full object-cover"
       />
-      <p className="absolute top-6 left-6 rounded-full bg-black bg-opacity-30 px-4 py-3 font-semibold">
+      <p className="absolute top-4 left-4 rounded-full bg-black bg-opacity-30 px-3 py-2 font-semibold md:top-6 md:left-6 md:px-4 md:py-3">
         {country.name}
       </p>
       <div className="absolute bottom-6 left-6">

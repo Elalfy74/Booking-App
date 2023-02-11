@@ -52,7 +52,7 @@ export const getStaticProps: GetStaticProps<{
   });
 
   const featuredCountriesReq = getCountries({
-    isFeatured: true,
+    // isFeatured: true,
     limit: 6,
   });
 

@@ -8,15 +8,15 @@ type CityProps = {
 
 const City = ({ city }: CityProps) => {
   return (
-    <div className="w-full p-6 main-border rounded-xl duration-main hover:border-white hover:bg-white hover:shadow-sm ">
+    <div className="main-border center w-full flex-col rounded-xl p-6 duration-main hover:border-white hover:bg-white hover:shadow-sm sm:block">
       <Image
-        width={80}
-        height={80}
+        width={120}
+        height={120}
         src={city.photos[0]}
         alt="city img"
         placeholder="blur"
         blurDataURL="https://via.placeholder.com/80?text"
-        className="object-cover w-20 h-20 rounded-xl"
+        className="h-20 w-20 rounded-xl object-cover"
       />
       <h3 className="text-sm ">
         {city.name}, {city.country.name}
