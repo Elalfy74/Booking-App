@@ -14,7 +14,7 @@ export function getCountries(options: GetCountriesParams) {
     range: [1, limit],
   };
 
-  if (String(isFeatured)) {
+  if (isFeatured !== undefined) {
     params.filter.isFeatured = isFeatured;
   }
   return axios.get(`/countries`, { params });

@@ -1,11 +1,10 @@
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 
-import { getCities } from "@/apis/cities";
-import { getCountries } from "@/apis/countries";
+import { getCities, getCountries, getHotels } from "@/apis";
 import {
   CitiesList,
   ExploreTheWorld,
-  FeatuedDestinations,
+  FeaturedDestinations,
   Hero,
   TopTour,
   TravelYourPassion,
@@ -15,20 +14,23 @@ import { ContactBanner } from "@/components/shared";
 import { Footer } from "@/layouts";
 import { ICity, ICityWCountry } from "@/types/cities";
 import { ICountry } from "@/types/countries";
+import { IHotel } from "@/types/hotels";
 
 const Home = ({
   cities,
   featuredCities,
   featuredCountries,
+  hotels,
+  featuredHotels,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <div>
       <Hero />
       <CitiesList cities={cities} />
-      <FeatuedDestinations featuredCities={featuredCities} />
+      <FeaturedDestinations featuredCities={featuredCities} />
       <TopTour featuredCountries={featuredCountries} />
-      <ExploreTheWorld />
-      <TrendingCites />
+      <ExploreTheWorld hotels={hotels} />
+      <TrendingCites featuredHotels={featuredHotels} />
       <TravelYourPassion />
       <ContactBanner />
       <Footer />
@@ -40,6 +42,8 @@ export const getStaticProps: GetStaticProps<{
   cities: ICityWCountry[];
   featuredCities: ICity[];
   featuredCountries: ICountry[];
+  hotels: IHotel[];
+  featuredHotels: IHotel[];
 }> = async (context) => {
   const citiesReq = getCities({
     isFeatured: false,
@@ -56,21 +60,35 @@ export const getStaticProps: GetStaticProps<{
     limit: 6,
   });
 
+  const hotelsReq = getHotels({
+    withCity: true,
+  });
+
+  const featuredHotelsReq = getHotels({
+    isFeatured: true,
+  });
+
   const response = await Promise.all([
     citiesReq,
     featuredCitiesReq,
     featuredCountriesReq,
+    hotelsReq,
+    featuredHotelsReq,
   ]);
 
   const cities: ICityWCountry[] = response[0].data;
   const featuredCities: ICity[] = response[1].data;
   const featuredCountries: ICountry[] = response[2].data;
+  const hotels: IHotel[] = response[3].data;
+  const featuredHotels: IHotel[] = response[4].data;
 
   return {
     props: {
       cities,
       featuredCities,
       featuredCountries,
+      hotels,
+      featuredHotels,
     },
   };
 };

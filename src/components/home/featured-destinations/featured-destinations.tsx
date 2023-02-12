@@ -1,3 +1,6 @@
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
 import { ICity } from "@/types/cities";
 
 import Heading from "../section-heading";
@@ -8,50 +11,46 @@ type FeaturedCitiesPros = {
 };
 
 const FeaturedDestinations = ({ featuredCities }: FeaturedCitiesPros) => {
+  const [selectedId, setSelectedId] = useState<null | string>(null);
+
+  useEffect(() => {
+    selectedId
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, [selectedId]);
+
+  const handleSelect = (id: string | null) => {
+    if (selectedId && id !== null) return;
+    setSelectedId(id);
+  };
+
   return (
     <section className="section">
       <Heading
         title="Featured Destinations"
         desc=" Popular destinations open to visitors from indonesia"
       />
-      <div className=" grid h-auto grid-cols-1 flex-col gap-6 md:h-[600px] md:grid-cols-3 md:grid-rows-9">
-        <div className="md:col-span-2 md:row-span-4">
+      <div className="relative grid h-auto  grid-cols-1 gap-6 md:h-[600px] md:grid-cols-3 md:grid-rows-9">
+        {featuredCities.map((city, i) => (
           <Destination
-            img={featuredCities[0].photos[0]}
-            name={featuredCities[0].name}
+            key={city._id}
+            selectedId={selectedId}
+            handleSelect={handleSelect}
+            city={city}
           />
-        </div>
-        <div className="col-span-1 md:row-span-3">
-          <Destination
-            img={featuredCities[1].photos[0]}
-            name={featuredCities[1].name}
-          />
-        </div>
-        <div className="col-span-1 md:row-span-5 md:row-start-5">
-          <Destination
-            img={featuredCities[2].photos[0]}
-            name={featuredCities[2].name}
-          />
-        </div>
-        <div className="col-span-1 md:row-span-5 md:row-start-5">
-          <Destination
-            img={featuredCities[3].photos[0]}
-            name={featuredCities[3].name}
-          />
-        </div>
-        <div className="col-span-1 md:row-span-3">
-          <Destination
-            img={featuredCities[4].photos[0]}
-            name={featuredCities[4].name}
-          />
-        </div>
-        <div className="col-span-1 md:row-span-3">
-          <Destination
-            img={featuredCities[5].photos[0]}
-            name={featuredCities[5].name}
-          />
-        </div>
+        ))}
       </div>
+      <AnimatePresence>
+        {selectedId && (
+          <motion.div
+            className="dim-layer"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
+            exit={{ opacity: 0 }}
+            onClick={() => handleSelect(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

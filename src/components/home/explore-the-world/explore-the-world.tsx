@@ -4,14 +4,14 @@ import "swiper/css/free-mode";
 import { FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { IHotel } from "@/types/hotels";
+
 import Heading from "../section-heading";
 import Hotel from "./hotel";
 
-const ExploreTheWorld = () => {
-  const array = new Array(6).fill("");
-
+const ExploreTheWorld = ({ hotels }: { hotels: IHotel[] }) => {
   return (
-    <section className="section">
+    <section className="section-swapper">
       <Heading title="Explore The World" desc="1000 beautiful places to go" />
       <Swiper
         slidesPerView={1.5}
@@ -27,15 +27,15 @@ const ExploreTheWorld = () => {
             slidesPerView: 3,
             spaceBetween: 30,
           },
-          1024: {
+          1536: {
             slidesPerView: 4,
             spaceBetween: 40,
           },
         }}
       >
-        {array.map((item, i) => (
-          <SwiperSlide key={i}>
-            <Hotel />
+        {hotels.map((hotel, i) => (
+          <SwiperSlide key={hotel._id}>
+            <Hotel hotel={hotel} />
           </SwiperSlide>
         ))}
       </Swiper>

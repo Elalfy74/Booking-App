@@ -1,28 +1,38 @@
-import Image from "next/image";
+import { motion } from "framer-motion";
+import React from "react";
 
-import { Card } from "@/components/ui";
+import useMobileDetector from "@/hooks/useMobileDetector";
+import { ICity } from "@/types/cities";
 
-const Destination = ({ img, name }: { img: string; name: string }) => {
-  return (
-    <Card className="overlay relative h-full overflow-hidden">
-      <Image
-        width={900}
-        height={250}
-        src={img}
-        alt="city"
-        className="h-full w-full object-cover "
-      />
-      <h3 className="absolute left-4 bottom-4 text-white">{name}</h3>
-    </Card>
-  );
+import { CardSwiper } from "./card-swiper";
+
+type DestinationProps = {
+  selectedId: string | null;
+  handleSelect: (id: string | null) => void;
+  city: ICity;
 };
 
-// export const SmallDestination = () => {
-//   return <Card className="h-full bg-cover bg-small"></Card>;
-// };
+const Destination = ({ selectedId, handleSelect, city }: DestinationProps) => {
+  const isMobile = useMobileDetector();
 
-// export const MediumDestination = () => {
-//   return <Card className="h-full bg-cover bg-medium"></Card>;
-// };
+  let cityProps =
+    selectedId === city._id ? city : { ...city, photos: [city.photos[0]] };
+
+  // Switch to normal Swiper on mobile
+  if (isMobile) {
+    cityProps = city;
+    handleSelect = () => {};
+  }
+
+  return (
+    <motion.div
+      className={selectedId === city._id ? "opened-card" : "layout-card"}
+      layout
+      onClick={() => handleSelect(city._id)}
+    >
+      <CardSwiper city={cityProps} />
+    </motion.div>
+  );
+};
 
 export default Destination;
