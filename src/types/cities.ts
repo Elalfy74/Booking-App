@@ -1,8 +1,7 @@
-import { ICountry } from "./countries";
-
 export interface ICity {
   _id: string;
   name: string;
+  slug: string;
   country: string;
   photos: string[];
   isFeatured: boolean;
@@ -11,5 +10,9 @@ export interface ICity {
 }
 
 export interface ICityWCountry extends Omit<ICity, "country"> {
-  country: ICountry;
+  country: {
+    _id: string;
+    name: string;
+    slug: string;
+  };
 }

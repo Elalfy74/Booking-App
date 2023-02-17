@@ -63,7 +63,7 @@
     @apply flex items-center justify-center;
   }
 
-  /******** Start Layout Grid ********/
+  /******** Start Layout Grid, Featured Destinations Section ********/
   .opened-card {
     @apply fixed top-0 bottom-0 left-0 right-0 z-10 m-auto flex h-[50vh] w-3/5;
   }
@@ -94,11 +94,12 @@
   }
   /* Swiper */
   .layout-swiper {
-    @apply cursor-pointer rounded-2xl;
+    @apply rounded-2xl md:cursor-pointer;
   }
   .layout-swiper .swiper-slide {
     @apply overlay;
   }
+  /******** End ********/
 }
 
 @layer base {
@@ -178,6 +179,13 @@ svg.star-svg {
   background: black;
   opacity: 0;
   z-index: 3;
+}
+
+.swiper-pagination-bullet {
+  background-color: #e2e2e2 !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: #316bff !important;
 }
 
 /* .mySwiper {

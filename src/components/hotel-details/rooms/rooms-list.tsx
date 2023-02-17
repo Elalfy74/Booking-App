@@ -1,13 +1,15 @@
+import { IRoom } from "@/types/hotels";
+
 import SingleRoom from "./single-room";
 
-const RoomsList = () => {
+const RoomsList = ({ rooms }: { rooms: IRoom[] }) => {
   return (
     <>
       <h1 className="mb-6 text-4xl font-semibold">Select Room</h1>
       <ul>
-        {new Array(3).fill("").map((item, i) => (
-          <li key={i} className="mb-10">
-            <SingleRoom />
+        {rooms.map((room) => (
+          <li key={room._id} className="mb-10">
+            <SingleRoom room={room} />
           </li>
         ))}
       </ul>

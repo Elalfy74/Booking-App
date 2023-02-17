@@ -1,9 +1,9 @@
 import { IHotel } from "@/types/hotels";
 
 import Heading from "../section-heading";
-import SingleTrendCity from "./single-trend-city";
+import SingleTrendHotel from "./single-trend-hotel";
 
-const TrendingCites = ({ featuredHotels }: { featuredHotels: IHotel[] }) => {
+const TrendingHotels = ({ featuredHotels }: { featuredHotels: IHotel[] }) => {
   return (
     <section className=" bg-[#F5F5F5] py-section">
       <div className="container">
@@ -13,7 +13,7 @@ const TrendingCites = ({ featuredHotels }: { featuredHotels: IHotel[] }) => {
         />
         <div className="grid grid-cols-1 gap-8 md:gap-10 lg:grid-cols-2">
           {featuredHotels.map((hotel) => (
-            <SingleTrendCity key={hotel._id} hotel={hotel} />
+            <SingleTrendHotel key={hotel._id} hotel={hotel} />
           ))}
         </div>
       </div>
@@ -21,4 +21,4 @@ const TrendingCites = ({ featuredHotels }: { featuredHotels: IHotel[] }) => {
   );
 };
 
-export default TrendingCites;
+export default TrendingHotels;

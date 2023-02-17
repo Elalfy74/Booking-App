@@ -2,19 +2,19 @@ import "swiper/css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { ICountry } from "@/types/countries";
+import { ICountryWCityCount } from "@/types/countries";
 
 import Heading from "../section-heading";
 import SingleTopTour from "./single-top-tour";
 
 type TopTourProps = {
-  featuredCountries: ICountry[];
+  featuredCountries: ICountryWCityCount[];
 };
 
 const TopTour = ({ featuredCountries }: TopTourProps) => {
   return (
     <section className="section-swapper relative">
-      <Heading title="Top Tour" desc="keep calm & tarvel on" />
+      <Heading title="Top Tour" desc="keep calm & travel on" />
       <div className="text-white ">
         <Swiper
           slidesPerView={1.5}

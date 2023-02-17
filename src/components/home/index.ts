@@ -4,4 +4,4 @@ export { default as FeaturedDestinations } from "./featured-destinations/feature
 export { default as Hero } from "./hero/hero";
 export { default as TopTour } from "./top-tour/top-tour";
 export { default as TravelYourPassion } from "./travel-your-passion/travel-your-passion";
-export { default as TrendingCites } from "./trending-cites/trending-cites";
+export { default as TrendingHotels } from "./trending-hotels/trending-hotels";

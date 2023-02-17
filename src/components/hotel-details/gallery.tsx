@@ -9,7 +9,18 @@ import "swiper/css/free-mode";
 import { FreeMode, Grid, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const Gallery = () => {
+import useMobileDetector from "@/hooks/useMobileDetector";
+
+const Gallery = ({ photos }: { photos?: string[] }) => {
+  let data = photos?.slice(0, 4);
+
+  const isMobile = useMobileDetector();
+
+  if (isMobile) {
+    data = photos;
+  }
+  if (!data) return <></>;
+
   return (
     <div className="h-[400px] md:h-[600px]">
       <Swiper
@@ -35,28 +46,28 @@ const Gallery = () => {
         <SwiperSlide className="h-full md:w-2/3">
           <img
             alt="hotel-details"
-            src="https://placeimg.com/800/600/arch"
+            src={data[0]}
             className="h-full w-full rounded-2xl object-cover md:rounded-none md:rounded-l-2xl"
           />
         </SwiperSlide>
         <SwiperSlide className="grid-item">
           <img
             alt="hotel-details"
-            src="https://placeimg.com/400/180/arch"
+            src={data[1]}
             className="h-full w-full rounded-2xl object-cover md:rounded-none md:rounded-tr-2xl"
           />
         </SwiperSlide>
         <SwiperSlide className="grid-item ">
           <img
             alt="hotel-details"
-            src="https://placeimg.com/400/180/arch"
+            src={data[2]}
             className="h-full w-full rounded-2xl object-cover md:rounded-none "
           />
         </SwiperSlide>
         <SwiperSlide className="grid-item">
           <img
             alt="hotel-details"
-            src="https://placeimg.com/400/180/arch"
+            src={data[3]}
             className="h-full w-full rounded-2xl object-cover md:rounded-none md:rounded-br-2xl"
           />
         </SwiperSlide>

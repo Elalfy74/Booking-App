@@ -1,4 +1,5 @@
 import axios from "../lib/axios";
+import { IHotelWCountry } from "../types";
 import { Params } from "./utils";
 
 type GetHotelsParams = {
@@ -24,4 +25,21 @@ export function getHotels(options: GetHotelsParams) {
     params.filter.isFeatured = isFeatured;
   }
   return axios.get(`/hotels`, { params });
+}
+
+export function getHotelBySlug(
+  slug: string
+): Promise<{ data: IHotelWCountry }> {
+  return axios.get(`/hotels/slug/${slug}`, {
+    params: {
+      withCity: true,
+      withCountry: true,
+    },
+  });
+}
+
+export function getFeaturedHotelsSlugs(): Promise<{
+  data: { slug: string }[];
+}> {
+  return axios.get(`/hotels/featured`);
 }
