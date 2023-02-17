@@ -10,7 +10,7 @@ type SingleTopTourProps = {
 
 const SingleTopTour = ({ country }: SingleTopTourProps) => {
   return (
-    <Link href={`/countries/${country.slug}`}>
+    <Link href={`/countries/${country.slug}`} className="w-full">
       <Card className="overlay relative h-full w-full overflow-hidden">
         <Image
           width={400}

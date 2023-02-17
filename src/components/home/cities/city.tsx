@@ -14,7 +14,7 @@ const City = ({ city }: CityProps) => {
       className="w-full"
       href={`/hotels?country=${city.country.slug}&city=${city.slug}&cityId=${city._id}`}
     >
-      <div className="main-border center w-full flex-col overflow-hidden rounded-xl p-6 duration-main hover:border-white hover:bg-white hover:shadow-sm ">
+      <div className="main-border center w-full flex-col overflow-hidden rounded-xl p-6 duration-main hover:border-white hover:bg-white hover:shadow-sm lg:items-start ">
         <Image
           width={120}
           height={120}

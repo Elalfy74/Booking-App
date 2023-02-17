@@ -1,5 +1,4 @@
-import "swiper/css";
-
+import { FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { ICountryWCityCount } from "@/types/countries";
@@ -13,38 +12,40 @@ type TopTourProps = {
 
 const TopTour = ({ featuredCountries }: TopTourProps) => {
   return (
-    <section className="section-swapper relative">
-      <Heading title="Top Tour" desc="keep calm & travel on" />
-      <div className="text-white ">
-        <Swiper
-          slidesPerView={1.5}
-          spaceBetween={20}
-          breakpoints={{
-            640: {
-              slidesPerView: 1.75,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 2.25,
-            },
-            1280: {
-              slidesPerView: 2.5,
-            },
-            1536: {
-              slidesPerView: 3,
-              spaceBetween: 30,
-            },
-          }}
-        >
-          {featuredCountries.map((fCountry) => (
-            <SwiperSlide key={fCountry._id}>
-              <SingleTopTour country={fCountry} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+    <section className="relative py-section sm:container">
+      <div className="px-4 sm:px-0">
+        <Heading title="Top Tour" desc="keep calm & travel on" />
       </div>
+      <Swiper
+        className="swiper-padding text-white"
+        slidesPerView={1.5}
+        spaceBetween={20}
+        modules={[FreeMode]}
+        breakpoints={{
+          640: {
+            slidesPerView: 1.75,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 2.25,
+          },
+          1280: {
+            slidesPerView: 2.5,
+          },
+          1536: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+        }}
+      >
+        {featuredCountries.map((fCountry) => (
+          <SwiperSlide key={fCountry._id}>
+            <SingleTopTour country={fCountry} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 };

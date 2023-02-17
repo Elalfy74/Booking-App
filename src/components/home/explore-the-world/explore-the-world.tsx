@@ -1,6 +1,3 @@
-import "swiper/css";
-import "swiper/css/free-mode";
-
 import { FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -16,12 +13,11 @@ const ExploreTheWorld = ({ hotels }: { hotels: IHotel[] }) => {
       <Swiper
         slidesPerView={1.5}
         freeMode={true}
-        spaceBetween={10}
+        spaceBetween={20}
         modules={[FreeMode]}
         breakpoints={{
           640: {
             slidesPerView: 2,
-            spaceBetween: 20,
           },
           768: {
             slidesPerView: 3,

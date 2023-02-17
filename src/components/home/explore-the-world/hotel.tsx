@@ -24,12 +24,9 @@ const Hotel = ({ hotel }: { hotel: IHotel }) => {
           <span>{hotel.stars}</span>
         </div>
         <div className="mb-2 flex items-center justify-between overflow-hidden">
-          <Link href={`/hotels/${hotel.slug}`}>
-            <h4 className="mt-0 overflow-hidden text-ellipsis whitespace-nowrap text-lg font-semibold capitalize sm:text-base lg:text-lg">
-              {hotel.name}
-            </h4>
-          </Link>
-
+          <h4 className="mt-0 overflow-hidden text-ellipsis whitespace-nowrap text-lg font-semibold capitalize sm:text-base lg:text-lg">
+            <Link href={`/hotels/${hotel.slug}`}>{hotel.name}</Link>
+          </h4>
           <span className="ml-3 rounded-md bg-primary-300 px-2 py-1 text-sm font-semibold text-primary">
             ${hotel.cheapestPrice}
           </span>
