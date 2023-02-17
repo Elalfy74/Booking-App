@@ -20,6 +20,7 @@ const TopTour = ({ featuredCountries }: TopTourProps) => {
         className="swiper-padding text-white"
         slidesPerView={1.5}
         spaceBetween={20}
+        freeMode={true}
         modules={[FreeMode]}
         breakpoints={{
           640: {
