@@ -1,41 +1,54 @@
-import "swiper/css";
-import "swiper/css/free-mode";
+import { FreeMode } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { FreeMode } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useMobileDetector, useNavigation } from '@/hooks';
+import {} from '@/hooks';
+import { IHotel } from '@/types/hotels';
 
-import Heading from "../section-heading";
-import Hotel from "./hotel";
+import NavigationController from '../navigation-controller';
+import Heading from '../section-heading';
+import Hotel from './hotel';
 
-const ExploreTheWorld = () => {
-  const array = new Array(6).fill("");
+const options = {
+  640: {
+    slidesPerView: 2,
+  },
+  768: {
+    slidesPerView: 3,
+    spaceBetween: 30,
+  },
+  1536: {
+    slidesPerView: 4,
+    spaceBetween: 40,
+  },
+};
+
+const ExploreTheWorld = ({ hotels }: { hotels: IHotel[] }) => {
+  const { setSwiperRef, handleSwiperChange } = useNavigation();
+  const isMobile = useMobileDetector();
 
   return (
-    <section className="section">
-      <Heading title="Explore The World" desc="1000 beautiful places to go" />
+    <section className='section-swiper '>
+      <div className='flex items-center justify-between px-4 sm:px-0'>
+        <Heading title='Explore The World' desc='1000 beautiful places to go' />
+        {!isMobile && (
+          <NavigationController handleSwiperChange={handleSwiperChange} />
+        )}
+      </div>
       <Swiper
+        className='swiper-padding'
         slidesPerView={1.5}
         freeMode={true}
-        spaceBetween={10}
         modules={[FreeMode]}
-        breakpoints={{
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
+        spaceBetween={20}
+        breakpoints={options}
+        onBeforeInit={(swiper) => {
+          setSwiperRef(swiper);
         }}
       >
-        {array.map((item, i) => (
-          <SwiperSlide key={i}>
-            <Hotel />
+        {hotels.map((hotel, i) => (
+          <SwiperSlide key={hotel._id}>
+            <Hotel hotel={hotel} />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -1,15 +1,38 @@
-import { Card } from "@/components/ui";
+import { motion } from 'framer-motion';
+import React from 'react';
 
-const Destination = () => {
-  return <Card className="h-full bg-center bg-cover bg-big"></Card>;
+import useMobileDetector from '@/hooks/use-mobile-detector';
+import { ICity } from '@/types/cities';
+
+import { CardSwiper } from './card-swiper';
+
+type DestinationProps = {
+  selectedId: string | null;
+  handleSelect: (id: string | null) => void;
+  city: ICity;
 };
 
-export const SmallDestination = () => {
-  return <Card className="h-full bg-cover bg-small"></Card>;
-};
+const Destination = ({ selectedId, handleSelect, city }: DestinationProps) => {
+  const isMobile = useMobileDetector();
 
-export const MediumDestination = () => {
-  return <Card className="h-full bg-cover bg-medium"></Card>;
+  let cityProps =
+    selectedId === city._id ? city : { ...city, photos: [city.photos[0]] };
+
+  // Switch to normal Swiper on mobile
+  if (isMobile) {
+    cityProps = city;
+    handleSelect = () => {};
+  }
+
+  return (
+    <motion.div
+      className={selectedId === city._id ? 'opened-card' : 'layout-card'}
+      layout
+      onClick={() => handleSelect(city._id)}
+    >
+      <CardSwiper city={cityProps} />
+    </motion.div>
+  );
 };
 
 export default Destination;

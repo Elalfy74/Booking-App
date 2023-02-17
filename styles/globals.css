@@ -1,7 +1,7 @@
 /* Heading Font */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 /* Body Font */
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,13 +12,23 @@
     @apply overlay relative flex h-[30rem] bg-hero bg-cover bg-center py-16 md:items-center 2xl:h-[40rem];
   }
   .overlay {
-    @apply before:absolute before:left-0 before:top-0 before:h-full before:w-full before:bg-black before:bg-opacity-10;
+    @apply before:absolute before:left-0 before:top-0 before:h-full before:w-full;
+  }
+  .overlay::before {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.0001) 10%,
+      #000000 120%
+    );
   }
   .main-border {
     @apply border border-[#1F2937] border-opacity-10;
   }
   .main-grid {
-    @apply grid gap-8 grid-cols-4-auto;
+    @apply grid grid-cols-4-auto gap-8;
+  }
+  .section-swiper {
+    @apply py-section sm:container;
   }
   .section {
     @apply container py-section;
@@ -41,11 +51,57 @@
   .center {
     @apply flex items-center justify-center;
   }
+
+  /******** Start Layout Grid, Featured Destinations Section ********/
+  .opened-card {
+    @apply fixed top-0 bottom-0 left-0 right-0 z-10 m-auto flex h-[50vh] w-3/5;
+  }
+  /* Card */
+  .layout-card:nth-child(1) {
+    @apply md:col-start-1 md:col-end-3 md:row-start-1 md:row-end-5;
+  }
+  .layout-card:nth-child(2) {
+    @apply md:col-start-3 md:row-start-1 md:row-end-4;
+  }
+  .layout-card:nth-child(3) {
+    @apply md:col-span-1 md:row-span-5 md:row-start-5;
+  }
+  .layout-card:nth-child(4) {
+    @apply md:col-start-2 md:col-end-3 md:row-start-5 md:row-end-[10];
+  }
+  .layout-card:nth-child(5) {
+    @apply md:row-start-4 md:row-end-7;
+  }
+  .layout-card:nth-child(6) {
+    @apply md:col-start-3 md:row-start-7 md:row-end-[10];
+  }
+  /* Card Title */
+  .layout-card:nth-child(2) h3,
+  .layout-card:nth-child(5) h3,
+  .layout-card:nth-child(6) h3 {
+    @apply md:text-base lg:text-lg;
+  }
+  /* Swiper */
+  .layout-swiper {
+    @apply rounded-2xl md:cursor-pointer;
+  }
+  .layout-swiper .swiper-slide {
+    @apply overlay;
+  }
+  /******** End ********/
+  .swiper-padding {
+    padding: 0px 1rem !important;
+  }
+  @media screen and (min-width: 640px) {
+    .swiper-padding {
+      padding: 0 !important;
+    }
+  }
 }
 
 @layer base {
   html {
-    font-family: "DM Sans", sans-serif;
+    font-family: 'DM Sans', sans-serif;
   }
   body {
     @apply bg-[#fafafc];
@@ -56,18 +112,18 @@
   h4,
   label,
   button {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   h2 {
     @apply mb-5 text-3xl font-semibold text-mainBlack md:text-4xl;
   }
   h3 {
-    @apply mt-3 text-xl font-semibold md:text-2xl;
+    @apply mt-3 text-xl font-semibold lg:text-2xl;
   }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
   textarea {
     @apply focus:outline-none;
   }
@@ -89,7 +145,7 @@
   -webkit-align-items: center;
   align-items: center;
 }
-.custom-swiper-grid {
+.featured-cities-swiper {
   height: calc((100% - 30px) / 2) !important;
 }
 
@@ -100,10 +156,65 @@
 }
 
 .grid-swiper .swiper-wrapper {
-  gap: 15px;
   justify-content: space-between;
+}
+
+.grid-swiper .swiper-wrapper .swiper-slide {
+  margin-top: 0px !important;
 }
 
 svg.star-svg {
   display: inline;
 }
+
+.dim-layer {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: black;
+  opacity: 0;
+  z-index: 3;
+}
+
+.swiper-pagination-bullet {
+  background-color: #e2e2e2 !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: #316bff !important;
+}
+
+/* .mySwiper {
+  width: 100%;
+  height: 100%;
+  margin: 0 1rem;
+  border-radius: 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.mySwiper .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* Open card */
+/* 
+    width: 40rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column; */
+/* Card */
+/* .layout-card{
+    @apply rounded-2xl
+  } */

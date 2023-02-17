@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 
-import Button from "../../ui/button ";
+import Button from "../../ui/button";
 import { AuthInput } from "../shared";
 import {
   signupInitialValues,

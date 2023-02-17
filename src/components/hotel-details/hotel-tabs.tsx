@@ -15,20 +15,29 @@ const tabs: Tab[] = [
     title: "Features",
     value: "tab2",
   },
-
-  {
-    title: "Room & Price",
-    value: "tab3",
-  },
-  {
-    title: "Review",
-    value: "tab4",
-  },
 ];
 
-interface Props {}
+const FeaturesTap = ({ features }: { features: string[] }) => {
+  const uniqueFeatures = Array.from(new Set<string>(features));
+  return (
+    <div className="flex flex-wrap gap-5">
+      {uniqueFeatures.map((feature) => (
+        <span
+          key={feature}
+          className="h-fit rounded-lg bg-white px-3 py-2 shadow-sm"
+        >
+          {feature}
+        </span>
+      ))}
+    </div>
+  );
+};
+interface Props {
+  desc: string;
+  features: string[];
+}
 
-const HotelTabs = (props: Props) => {
+const HotelTabs = ({ desc, features }: Props) => {
   return (
     <TabsPrimitive.Root defaultValue="tab1">
       <TabsPrimitive.List className={cx("flex w-full")}>
@@ -56,16 +65,14 @@ const HotelTabs = (props: Props) => {
           value={value}
           className={cx(" px-6 py-4 ")}
         >
-          <span className="text-sm text-gray-700 dark:text-gray-100">
+          <div className="leading-relaxed tracking-wide text-gray-700 dark:text-gray-100">
             {
               {
-                tab1: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                tab2: "Make some coffee",
-                tab3: "Order more coffee",
-                tab4: "Order more coffee 4",
+                tab1: desc,
+                tab2: <FeaturesTap features={features} />,
               }[value]
             }
-          </span>
+          </div>
         </TabsPrimitive.Content>
       ))}
     </TabsPrimitive.Root>
