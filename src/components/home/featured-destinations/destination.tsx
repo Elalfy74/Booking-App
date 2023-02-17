@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
-import React from "react";
+import { motion } from 'framer-motion';
+import React from 'react';
 
-import useMobileDetector from "@/hooks/useMobileDetector";
-import { ICity } from "@/types/cities";
+import useMobileDetector from '@/hooks/use-mobile-detector';
+import { ICity } from '@/types/cities';
 
-import { CardSwiper } from "./card-swiper";
+import { CardSwiper } from './card-swiper';
 
 type DestinationProps = {
   selectedId: string | null;
@@ -26,7 +26,7 @@ const Destination = ({ selectedId, handleSelect, city }: DestinationProps) => {
 
   return (
     <motion.div
-      className={selectedId === city._id ? "opened-card" : "layout-card"}
+      className={selectedId === city._id ? 'opened-card' : 'layout-card'}
       layout
       onClick={() => handleSelect(city._id)}
     >
