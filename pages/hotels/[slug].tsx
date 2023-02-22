@@ -1,8 +1,8 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import { ParsedUrlQuery } from "querystring";
-import { Rating } from "react-simple-star-rating";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
+import { ParsedUrlQuery } from 'querystring';
+import { Rating } from 'react-simple-star-rating';
 
-import { getFeaturedHotelsSlugs, getHotelBySlug } from "@/apis";
+import { getFeaturedHotelsSlugs, getHotelBySlug } from '@/apis';
 import {
   BookingSummary,
   Gallery,
@@ -12,11 +12,11 @@ import {
   ReviewsList,
   RoomsList,
   TrendingHotels,
-} from "@/components/hotel-details";
-import { Breadcrumbs, ContactBanner } from "@/components/shared";
-import { Divider } from "@/components/ui";
-import { Footer } from "@/layouts/footer";
-import { IHotelWCountry } from "@/types/hotels";
+} from '@/components/hotel-details';
+import { Breadcrumbs, ContactBanner } from '@/components/shared';
+import { Divider } from '@/components/ui';
+import { Footer } from '@/layouts/footer';
+import { IHotelWCountry } from '@/types/hotels';
 
 const HotelDetails = ({
   hotel,
@@ -25,15 +25,15 @@ const HotelDetails = ({
 
   return (
     <div>
-      <div className="px-4 py-10 md:px-20">
+      <div className='px-4 py-10 md:px-20 lg:px-48'>
         <Breadcrumbs />
         <div>
-          <h1 className="my-4 text-4xl font-semibold text-secondBlack">
-            {hotel?.name}
+          <h1 className='my-4 text-4xl font-semibold capitalize text-secondBlack'>
+            {hotel.name}
           </h1>
-          <div className="mb-4 flex items-center gap-10">
+          <div className='mb-4 flex items-center gap-10'>
             <Rating readonly initialValue={hotel.stars} size={18} />
-            <p className="capitalize">
+            <p className='capitalize'>
               {hotel.city.name}, {hotel.city.country.name}
             </p>
           </div>
@@ -41,26 +41,26 @@ const HotelDetails = ({
           <HotelTags />
         </div>
 
-        <div className="mb-10 flex flex-col justify-between gap-10 lg:flex-row xl:gap-20 2xl:gap-28">
+        <div className='mb-10 flex flex-col justify-between gap-10 lg:flex-row xl:gap-20 2xl:gap-28'>
           {/* Description */}
           {/* Heading */}
-          <div className="mt-5 w-full lg:w-2/3">
+          <div className='mt-5 w-full lg:w-2/3'>
             <HotelTabs desc={hotel.desc} features={hotel.features} />
           </div>
-          <div className="w-full lg:w-1/3">
+          <div className='w-full lg:w-1/3'>
             <BookingSummary />
           </div>
         </div>
         <Divider />
 
-        <div className="container mt-20 flex flex-col gap-20 xl:w-[70%]">
+        <div className='container mt-20 flex flex-col gap-20 xl:w-[85%]'>
           <RoomsList rooms={hotel.rooms} />
           <ReviewForm />
           <ReviewsList />
         </div>
       </div>
 
-      <div className="container">
+      <div className='container'>
         <TrendingHotels />
       </div>
       <ContactBanner />

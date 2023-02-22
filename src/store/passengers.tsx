@@ -1,28 +1,32 @@
-import create from "zustand";
+import create from 'zustand';
 
-import { passengerInitialState } from "@/data/data";
-import { PassengersState } from "@/types/types";
+import { passengerInitialState } from '@/data/data';
+import { PassengersState } from '@/types/types';
 
 type PassengersStateType = {
   passengers: PassengersState;
   handlePassenger: (
     key: keyof PassengersState,
-    operator: "plus" | "minus"
+    operator: 'plus' | 'minus'
   ) => void;
 };
 
 const usePassengers = create<PassengersStateType>((set, get) => ({
   passengers: passengerInitialState,
-  handlePassenger: (key: keyof PassengersState, operator: "plus" | "minus") => {
+  handlePassenger: (key: keyof PassengersState, operator: 'plus' | 'minus') => {
     const passengerNumber = get().passengers[key];
 
-    if (passengerNumber === 0 && operator === "minus") return;
-    if (passengerNumber === 8 && operator === "plus") return;
+    if (key === 'Adults' && passengerNumber === 1 && operator === 'minus') {
+      return;
+    }
+
+    if (passengerNumber === 0 && operator === 'minus') return;
+    if (passengerNumber === 8 && operator === 'plus') return;
 
     set((prevState) => ({
       passengers: {
         ...prevState.passengers,
-        [key]: operator === "minus" ? passengerNumber - 1 : passengerNumber + 1,
+        [key]: operator === 'minus' ? passengerNumber - 1 : passengerNumber + 1,
       },
     }));
   },

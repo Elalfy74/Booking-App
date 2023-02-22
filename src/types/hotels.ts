@@ -1,6 +1,6 @@
 export interface IRoom {
   _id?: string;
-  title: string;
+  name: string;
   maxPeople: {
     adults: number;
     children: number;

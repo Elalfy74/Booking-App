@@ -1,5 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
+import getConfig from 'next/config';
 
-axios.defaults.baseURL = process.env.BACKEND_URL;
+const { publicRuntimeConfig } = getConfig();
+
+axios.defaults.baseURL = publicRuntimeConfig.backendUrl;
 
 export default axios;

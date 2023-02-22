@@ -4,7 +4,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import _ from 'lodash';
 import { DateRange } from 'react-date-range';
 
-import { currentDate, formatDate, getMaxDate } from '@/helpers/date';
+import { addYears, currentDate, formatDate } from '@/helpers/date';
 import useMobileDetector from '@/hooks/use-mobile-detector';
 import useDateRange from '@/store/date-range';
 
@@ -17,22 +17,15 @@ const DateRangeInput = () => {
 
   const direction = isMobile ? 'vertical' : 'horizontal';
 
-  let label = 'Check in/Check out';
-  let hasValue = false;
-
-  if (!_.isEqual(datesRange[0].endDate, currentDate)) {
-    label = `${formatDate(datesRange[0].startDate!)} / ${formatDate(
-      datesRange[0].endDate!
-    )}`;
-    hasValue = true;
-  }
+  const label = `${formatDate(datesRange[0].startDate!)} / ${formatDate(
+    datesRange[0].endDate!
+  )}`;
 
   return (
-    <CustomPopover label={label} hasValue={hasValue}>
+    <CustomPopover label={label}>
       <DateRange
-        className='rounded-lg shadow-md'
         minDate={currentDate}
-        maxDate={getMaxDate(currentDate)}
+        maxDate={addYears(currentDate)}
         ranges={datesRange}
         months={2}
         direction={direction}
