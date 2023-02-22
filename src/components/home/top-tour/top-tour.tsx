@@ -34,7 +34,9 @@ const options = {
 };
 
 const TopTour = ({ featuredCountries }: TopTourProps) => {
-  const { setSwiperRef, handleSwiperChange } = useNavigation();
+  const { setSwiperRef, handleSwiperChange, handleCurrentStatus, status } =
+    useNavigation();
+
   const isMobile = useMobileDetector();
 
   return (
@@ -49,7 +51,10 @@ const TopTour = ({ featuredCountries }: TopTourProps) => {
             See All <ChevronRightIcon width={15} />
           </Link>
           {!isMobile && (
-            <NavigationController handleSwiperChange={handleSwiperChange} />
+            <NavigationController
+              handleSwiperChange={handleSwiperChange}
+              status={status}
+            />
           )}
         </div>
       </div>
@@ -62,6 +67,9 @@ const TopTour = ({ featuredCountries }: TopTourProps) => {
         onBeforeInit={(swiper) => {
           setSwiperRef(swiper);
         }}
+        onSlideChange={({ isBeginning, isEnd }) =>
+          handleCurrentStatus({ isBeginning, isEnd })
+        }
         breakpoints={options}
       >
         {featuredCountries.map((fCountry) => (

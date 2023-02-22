@@ -1,7 +1,7 @@
-import { Range, RangeKeyDict } from "react-date-range";
-import create from "zustand";
+import { Range, RangeKeyDict } from 'react-date-range';
+import create from 'zustand';
 
-import { initialDate } from "@/helpers/date";
+import { initialDate } from '@/helpers/date';
 
 type DateRangeState = {
   dates: Range[];
@@ -10,8 +10,9 @@ type DateRangeState = {
 
 const useDateRange = create<DateRangeState>((set) => ({
   dates: [initialDate],
-  handleDateSelect: (rangesByKey: RangeKeyDict) =>
-    set(() => ({ dates: [rangesByKey.selection] })),
+  handleDateSelect: (rangesByKey: RangeKeyDict) => {
+    return set(() => ({ dates: [rangesByKey.selection] }));
+  },
 }));
 
 export default useDateRange;

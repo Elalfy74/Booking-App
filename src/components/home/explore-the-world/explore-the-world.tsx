@@ -2,7 +2,6 @@ import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { useMobileDetector, useNavigation } from '@/hooks';
-import {} from '@/hooks';
 import { IHotel } from '@/types/hotels';
 
 import NavigationController from '../navigation-controller';
@@ -24,7 +23,8 @@ const options = {
 };
 
 const ExploreTheWorld = ({ hotels }: { hotels: IHotel[] }) => {
-  const { setSwiperRef, handleSwiperChange } = useNavigation();
+  const { setSwiperRef, handleSwiperChange, handleCurrentStatus, status } =
+    useNavigation();
   const isMobile = useMobileDetector();
 
   return (
@@ -32,7 +32,10 @@ const ExploreTheWorld = ({ hotels }: { hotels: IHotel[] }) => {
       <div className='flex items-center justify-between px-4 sm:px-0'>
         <Heading title='Explore The World' desc='1000 beautiful places to go' />
         {!isMobile && (
-          <NavigationController handleSwiperChange={handleSwiperChange} />
+          <NavigationController
+            handleSwiperChange={handleSwiperChange}
+            status={status}
+          />
         )}
       </div>
       <Swiper
@@ -45,6 +48,9 @@ const ExploreTheWorld = ({ hotels }: { hotels: IHotel[] }) => {
         onBeforeInit={(swiper) => {
           setSwiperRef(swiper);
         }}
+        onSlideChange={({ isBeginning, isEnd }) =>
+          handleCurrentStatus({ isBeginning, isEnd })
+        }
       >
         {hotels.map((hotel, i) => (
           <SwiperSlide key={hotel._id}>
