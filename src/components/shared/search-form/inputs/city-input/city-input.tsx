@@ -51,7 +51,7 @@ export default function CityInput(props: CityInputProps) {
           leaveTo='opacity-0'
           afterLeave={() => setQuery('')}
         >
-          <Combobox.Options className='absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl bg-white py-1 text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+          {/* <Combobox.Options className='absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl bg-white py-1 text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
             {cities?.length === 0 && query !== '' ? (
               <div className='relative cursor-default select-none px-4 py-2 text-gray-700'>
                 Nothing found.
@@ -90,7 +90,7 @@ export default function CityInput(props: CityInputProps) {
                 </Combobox.Option>
               ))
             )}
-          </Combobox.Options>
+          </Combobox.Options> */}
         </Transition>
       </div>
     </Combobox>

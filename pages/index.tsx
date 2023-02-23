@@ -1,6 +1,12 @@
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 
-import { getCities, getCountries, getHotels } from "@/apis";
+import {
+  getCities,
+  getCountries,
+  getFeaturedCities,
+  getFeaturedCountries,
+  getHotels,
+} from '@/apis';
 import {
   CitiesList,
   ExploreTheWorld,
@@ -9,12 +15,12 @@ import {
   TopTour,
   TravelYourPassion,
   TrendingHotels,
-} from "@/components/home";
-import { ContactBanner } from "@/components/shared";
-import { Footer } from "@/layouts";
-import { ICity, ICityWCountry } from "@/types/cities";
-import { ICountry, ICountryWCityCount } from "@/types/countries";
-import { IHotel } from "@/types/hotels";
+} from '@/components/home';
+import { ContactBanner } from '@/components/shared';
+import { Footer } from '@/layouts';
+import { ICity, ICityWCountry } from '@/types/cities';
+import { ICountry, ICountryWCityCount } from '@/types/countries';
+import { IHotel } from '@/types/hotels';
 
 const Home = ({
   cities,
@@ -50,13 +56,9 @@ export const getStaticProps: GetStaticProps<IProps> = async (context) => {
     withCountry: true,
   });
 
-  const featuredCitiesReq = getCities({
-    isFeatured: true,
-  });
+  const featuredCitiesReq = getFeaturedCities();
 
-  const featuredCountriesReq = getCountries({
-    withCitiesCount: true,
-  });
+  const featuredCountriesReq = getFeaturedCountries(true);
 
   const hotelsReq = getHotels({
     withCity: true,

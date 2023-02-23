@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMobileDetector, useNavigation } from '@/hooks';
 import { IHotel } from '@/types/hotels';
 
-import NavigationController from '../navigation-controller';
+import NavigationController from '../../shared/navigation-controller';
 import Heading from '../section-heading';
 import Hotel from './hotel';
 

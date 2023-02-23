@@ -1,37 +1,36 @@
-import axios from "../lib/axios";
-import { Params } from "./utils";
+import axios from '../lib/axios';
+import { ICountry } from '../types';
 
 type GetCountriesParams = {
   withCitiesCount?: boolean;
-  isFeatured?: boolean;
+  filter?: Partial<ICountry>;
   limit?: number;
+  fields?: string[];
 };
 
-type CountryParams =
-  | Params
-  | {
-      withCitiesCount: boolean;
-    };
-
 export function getCountries(options: GetCountriesParams) {
-  const { withCitiesCount, isFeatured, limit = 6 } = options;
+  const { withCitiesCount, filter = {}, limit = 6, fields } = options;
 
-  let params: CountryParams;
-
-  if (withCitiesCount) {
-    params = {
-      withCitiesCount,
-    };
-  } else {
-    params = {
-      filter: {},
-      range: [1, limit],
-    };
-
-    if (isFeatured !== undefined) {
-      params.filter.isFeatured = isFeatured;
-    }
-  }
+  const params = {
+    withCitiesCount,
+    filter: JSON.stringify(filter),
+    range: [1, limit],
+    fields,
+  };
 
   return axios.get(`/countries`, { params });
+}
+
+export function getFeaturedCountries(withCitiesCount?: boolean) {
+  return getCountries({
+    withCitiesCount,
+    filter: { isFeatured: true },
+  });
+}
+
+export function getCountriesIds(): Promise<{ data: { _id: string }[] }> {
+  return getCountries({
+    fields: ['_id'],
+    limit: 0,
+  });
 }
