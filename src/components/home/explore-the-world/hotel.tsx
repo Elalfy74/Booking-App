@@ -4,9 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Card } from '@/components/ui';
-import { IHotel } from '@/types/hotels';
+import { IHotelWCity } from '@/types/hotels';
 
-const Hotel = ({ hotel }: { hotel: IHotel }) => {
+const Hotel = ({ hotel }: { hotel: IHotelWCity }) => {
   return (
     <Card className='main-border h-[350px] max-h-full w-full p-3 shadow-sm '>
       <Link href={`/hotels/${hotel.slug}`}>
@@ -39,7 +39,7 @@ const Hotel = ({ hotel }: { hotel: IHotel }) => {
           </p>
           <p className='mt-1 flex items-center gap-2'>
             <BuildingOfficeIcon className='h-5 w-5' /> Rooms Categories:{' '}
-            {/* {hotel.rooms?.length} */}
+            {hotel.rooms?.length}
           </p>
         </div>
       </div>

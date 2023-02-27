@@ -1,4 +1,4 @@
-import create from "zustand";
+import create from 'zustand';
 
 export enum ModalContent {
   LOGIN,
@@ -11,10 +11,8 @@ type AuthModalState = {
   changeContent: (newContent: ModalContent) => void;
 };
 
-const useAuthModal = create<AuthModalState>((set) => ({
+export const useAuthModal = create<AuthModalState>((set) => ({
   modalContent: ModalContent.LOGIN,
   changeContent: (newContent: ModalContent) =>
     set(() => ({ modalContent: newContent })),
 }));
-
-export default useAuthModal;

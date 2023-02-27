@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { Rating } from 'react-simple-star-rating';
 
-import { getFeaturedHotelsSlugs, getHotelBySlug } from '@/apis';
+import { getFeaturedHotelsSlugs, getHotel } from '@/apis';
 import {
   BookingSummary,
   Gallery,
@@ -15,7 +15,6 @@ import {
 } from '@/components/hotel-details';
 import { Breadcrumbs, ContactBanner } from '@/components/shared';
 import { Divider } from '@/components/ui';
-import { Footer } from '@/layouts/footer';
 import { IHotelWCountry } from '@/types/hotels';
 
 const HotelDetails = ({
@@ -64,7 +63,7 @@ const HotelDetails = ({
         <TrendingHotels />
       </div>
       <ContactBanner />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
@@ -80,7 +79,7 @@ export const getStaticProps: GetStaticProps<{
 }> = async (context) => {
   const { slug } = context.params as IParams;
 
-  const { data: hotel } = await getHotelBySlug(slug);
+  const { data: hotel } = await getHotel(slug);
   return {
     props: {
       hotel,

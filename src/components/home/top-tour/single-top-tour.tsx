@@ -15,7 +15,10 @@ const SingleTopTour = ({ entity }: SingleTopTourProps) => {
   const photo = isCity ? entity.photos[0] : entity.photo;
   const badge = isCity ? entity.country.name : entity.name;
 
-  const href = isCity ? entity._id : `/countries/${entity._id}`;
+  const href = isCity
+    ? `/hotels?country=${entity.country.name}&city=${entity._id}`
+    : `/countries/${entity._id}`;
+
   return (
     <Link href={href} className='w-full text-white '>
       <Card className='overlay group relative h-full w-full overflow-hidden before:z-[2]'>

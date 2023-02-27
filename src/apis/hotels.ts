@@ -1,36 +1,27 @@
-import axios from "../lib/axios";
-import { IHotelWCountry } from "../types";
-import { Params } from "./utils";
+import axios from '../lib/axios';
+import { IHotel, IHotelWCity, IHotelWCountry } from '../types';
 
 type GetHotelsParams = {
-  isFeatured?: boolean;
+  withCity?: boolean;
+  filter?: Partial<IHotel>;
   limit?: number;
-  withCity?: boolean;
+  fields?: string[];
 };
 
-type CityParams = Params & {
-  withCity?: boolean;
-};
+export function getHotels<T>(options: GetHotelsParams): Promise<{ data: T[] }> {
+  const { withCity, filter = {}, limit = 6 } = options;
 
-export function getHotels(options: GetHotelsParams) {
-  const { isFeatured, limit = 6, withCity } = options;
-
-  const params: CityParams = {
-    filter: {},
-    range: [1, limit],
+  const params = {
     withCity,
+    filter: JSON.stringify(filter),
+    range: [1, limit],
   };
 
-  if (isFeatured !== undefined) {
-    params.filter.isFeatured = isFeatured;
-  }
   return axios.get(`/hotels`, { params });
 }
 
-export function getHotelBySlug(
-  slug: string
-): Promise<{ data: IHotelWCountry }> {
-  return axios.get(`/hotels/slug/${slug}`, {
+export function getHotel(slug: string): Promise<{ data: IHotelWCountry }> {
+  return axios.get(`/hotels/${slug}`, {
     params: {
       withCity: true,
       withCountry: true,
@@ -38,8 +29,20 @@ export function getHotelBySlug(
   });
 }
 
-export function getFeaturedHotelsSlugs(): Promise<{
-  data: { slug: string }[];
-}> {
-  return axios.get(`/hotels/featured`);
+export function getFeaturedHotels() {
+  return getHotels<IHotelWCountry>({
+    filter: {
+      isFeatured: true,
+    },
+    withCity: true,
+  });
+}
+
+export function getFeaturedHotelsSlugs() {
+  return getHotels<{ slug: string }>({
+    filter: {
+      isFeatured: true,
+    },
+    fields: ['slug'],
+  });
 }

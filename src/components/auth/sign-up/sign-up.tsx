@@ -1,12 +1,13 @@
-import useAuthModal, { ModalContent } from "../../../store/auth-modal-store";
+import { ModalContent, useAuthModal } from '@/store';
+
 import {
   AuthActions,
   AuthDivider,
   AuthHeading,
   AuthWrapper,
   SocialLogin,
-} from "../shared";
-import SignUpForm from "./sign-up-form";
+} from '../shared';
+import SignUpForm from './sign-up-form';
 
 const SignUp = () => {
   const changeContent = useAuthModal((state) => state.changeContent);
@@ -22,8 +23,8 @@ const SignUp = () => {
       <SignUpForm />
 
       <AuthActions
-        text="Already have an account?"
-        label="Sign in"
+        text='Already have an account?'
+        label='Sign in'
         handleClick={() => changeContent(ModalContent.LOGIN)}
       />
     </AuthWrapper>

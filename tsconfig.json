@@ -22,6 +22,7 @@
       "@/types/*":["src/types/*"],
       "@/types":["src/types"],
       "@/store/*":["src/store/*"],
+      "@/store":["src/store"],
       "@/apis":["src/apis"],
 
     },

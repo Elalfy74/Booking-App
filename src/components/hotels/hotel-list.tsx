@@ -1,11 +1,13 @@
-import SingleHotel from "./single-hotel";
+import { IHotelWCity } from '@/types';
 
-const HotelList = () => {
+import SingleHotel from './single-hotel';
+
+const HotelList = ({ hotels }: { hotels?: IHotelWCity[] }) => {
   return (
-    <div className="flex flex-col gap-20 mt-10">
-      <SingleHotel />
-      <SingleHotel />
-      <SingleHotel />
+    <div className='mt-10 flex flex-col gap-20'>
+      {hotels?.map((hotel) => (
+        <SingleHotel key={hotel._id} hotel={hotel} />
+      ))}
     </div>
   );
 };

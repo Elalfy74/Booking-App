@@ -9,6 +9,7 @@ const Countries = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <div className='overflow-hidden'>
+      
       <Banner
         text='All our destinations in the world'
         image={'/images/world.jpeg'}

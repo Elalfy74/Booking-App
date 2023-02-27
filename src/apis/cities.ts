@@ -2,7 +2,7 @@ import axios from '../lib/axios';
 import { ICity } from '../types';
 
 type GetCitiesParams = {
-  filter?: Partial<ICity>;
+  filter?: Partial<ICity> & { q?: string };
   limit?: number;
   withCountry?: boolean;
 };
@@ -11,12 +11,24 @@ export function getCities(options: GetCitiesParams) {
   const { filter = {}, withCountry, limit = 6 } = options;
 
   const params = {
-    filter,
     withCountry,
+    filter,
     range: [1, limit],
   };
 
   return axios.get(`/cities`, {
+    params,
+  });
+}
+
+export function getCity(id: string, withCountry = false) {
+  if (id.length == 0) return;
+
+  const params = {
+    withCountry,
+  };
+
+  return axios.get(`/cities/${id}`, {
     params,
   });
 }
