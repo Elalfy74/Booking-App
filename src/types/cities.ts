@@ -1,3 +1,5 @@
+import { ICountry } from './countries';
+
 export interface ICity {
   _id: string;
   name: string;
@@ -9,10 +11,6 @@ export interface ICity {
   updatedAt: Date;
 }
 
-export interface ICityWCountry extends Omit<ICity, "country"> {
-  country: {
-    _id: string;
-    name: string;
-    slug: string;
-  };
+export interface ICityWCountry extends Omit<ICity, 'country'> {
+  country: ICountry;
 }

@@ -1,6 +1,13 @@
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 
-import { getCities, getCountries, getHotels } from "@/apis";
+import {
+  getCities,
+  getCountries,
+  getFeaturedCities,
+  getFeaturedCountries,
+  getFeaturedHotels,
+  getHotels,
+} from '@/apis';
 import {
   CitiesList,
   ExploreTheWorld,
@@ -9,12 +16,11 @@ import {
   TopTour,
   TravelYourPassion,
   TrendingHotels,
-} from "@/components/home";
-import { ContactBanner } from "@/components/shared";
-import { Footer } from "@/layouts";
-import { ICity, ICityWCountry } from "@/types/cities";
-import { ICountry, ICountryWCityCount } from "@/types/countries";
-import { IHotel } from "@/types/hotels";
+} from '@/components/home';
+import { ContactBanner } from '@/components/shared';
+import { ICity, ICityWCountry } from '@/types/cities';
+import { ICountryWCityCount } from '@/types/countries';
+import { IHotelWCity } from '@/types/hotels';
 
 const Home = ({
   cities,
@@ -33,7 +39,7 @@ const Home = ({
       <TrendingHotels featuredHotels={featuredHotels} />
       {/* <TravelYourPassion /> */}
       <ContactBanner />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
@@ -42,29 +48,24 @@ interface IProps {
   cities: ICityWCountry[];
   featuredCities: ICity[];
   featuredCountries: ICountryWCityCount[];
-  hotels: IHotel[];
-  featuredHotels: IHotel[];
+  hotels: IHotelWCity[];
+  featuredHotels: IHotelWCity[];
 }
-export const getStaticProps: GetStaticProps<IProps> = async (context) => {
+
+export const getStaticProps: GetStaticProps = async (context) => {
   const citiesReq = getCities({
     withCountry: true,
   });
 
-  const featuredCitiesReq = getCities({
-    isFeatured: true,
-  });
+  const featuredCitiesReq = getFeaturedCities();
 
-  const featuredCountriesReq = getCountries({
-    withCitiesCount: true,
-  });
+  const featuredCountriesReq = getFeaturedCountries(true);
 
-  const hotelsReq = getHotels({
+  const hotelsReq = getHotels<IHotelWCity>({
     withCity: true,
   });
 
-  const featuredHotelsReq = getHotels({
-    isFeatured: true,
-  });
+  const featuredHotelsReq = getFeaturedHotels();
 
   const response = await Promise.all([
     citiesReq,

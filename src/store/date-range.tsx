@@ -8,11 +8,9 @@ type DateRangeState = {
   handleDateSelect: (rangesByKey: RangeKeyDict) => void;
 };
 
-const useDateRange = create<DateRangeState>((set) => ({
+export const useDateRange = create<DateRangeState>((set) => ({
   dates: [initialDate],
   handleDateSelect: (rangesByKey: RangeKeyDict) => {
     return set(() => ({ dates: [rangesByKey.selection] }));
   },
 }));
-
-export default useDateRange;

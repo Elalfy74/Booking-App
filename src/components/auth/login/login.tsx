@@ -1,12 +1,13 @@
-import useAuthModal, { ModalContent } from "../../../store/auth-modal-store";
+import { ModalContent, useAuthModal } from '@/store';
+
 import {
   AuthActions,
   AuthDivider,
   AuthHeading,
   AuthWrapper,
   SocialLogin,
-} from "../shared";
-import LoginForm from "./login-form";
+} from '../shared';
+import LoginForm from './login-form';
 
 const Login = () => {
   const changeContent = useAuthModal((state) => state.changeContent);
@@ -23,7 +24,7 @@ const Login = () => {
 
       <AuthActions
         text=" Don't have an account?"
-        label="Sign up"
+        label='Sign up'
         handleClick={() => changeContent(ModalContent.SIGNUP)}
       />
     </AuthWrapper>

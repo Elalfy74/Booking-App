@@ -17,10 +17,7 @@ export interface IHotel {
   address: string;
   distanceToDTInKm: number;
   category: string;
-  city: {
-    _id: string;
-    name: string;
-  };
+  city: string;
   photos: string[];
   features: string[];
   stars: number;
@@ -28,8 +25,14 @@ export interface IHotel {
   isFeatured: boolean;
   reviews: Object[];
 }
+export interface IHotelWCity extends Omit<IHotel, 'city'> {
+  city: {
+    _id: string;
+    name: string;
+  };
+}
 
-export interface IHotelWCountry extends IHotel {
+export interface IHotelWCountry extends IHotelWCity {
   city: {
     _id: string;
     name: string;

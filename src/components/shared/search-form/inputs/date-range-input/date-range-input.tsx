@@ -6,7 +6,7 @@ import { DateRange } from 'react-date-range';
 
 import { addYears, currentDate, formatDate } from '@/helpers/date';
 import useMobileDetector from '@/hooks/use-mobile-detector';
-import useDateRange from '@/store/date-range';
+import { useDateRange } from '@/store';
 
 import CustomPopover from '../../input-popover';
 

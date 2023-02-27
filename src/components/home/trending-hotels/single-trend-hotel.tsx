@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Rating } from 'react-simple-star-rating';
 
 import { Button, Card } from '@/components/ui';
-import { IHotel } from '@/types';
+import { IHotelWCity } from '@/types';
 
-const SingleTrendHotel = ({ hotel }: { hotel: IHotel }) => {
+const SingleTrendHotel = ({ hotel }: { hotel: IHotelWCity }) => {
   return (
     <Card className='flex max-w-full gap-4 p-4 shadow-sm md:gap-10 md:p-6'>
       <Link

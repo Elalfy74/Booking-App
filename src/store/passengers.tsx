@@ -11,7 +11,7 @@ type PassengersStateType = {
   ) => void;
 };
 
-const usePassengers = create<PassengersStateType>((set, get) => ({
+export const usePassengers = create<PassengersStateType>((set, get) => ({
   passengers: passengerInitialState,
   handlePassenger: (key: keyof PassengersState, operator: 'plus' | 'minus') => {
     const passengerNumber = get().passengers[key];
@@ -31,5 +31,3 @@ const usePassengers = create<PassengersStateType>((set, get) => ({
     }));
   },
 }));
-
-export default usePassengers;

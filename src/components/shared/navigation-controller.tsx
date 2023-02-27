@@ -13,7 +13,7 @@ const NavigationController = ({
   status,
 }: NavigationControllerProps) => {
   const btnStyle =
-    'rounded-full bg-gray-200 p-2 duration-main hover:bg-gray-300 disabled:bg-gray-100';
+    'rounded-full bg-gray-200 p-2 duration-main hover:bg-gray-300 disabled:bg-gray-100 disabled:cursor-not-allowed';
 
   return (
     <div className='flex gap-2'>

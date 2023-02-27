@@ -2,9 +2,9 @@ import { FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { useMobileDetector, useNavigation } from '@/hooks';
-import { IHotel } from '@/types/hotels';
+import { IHotelWCity } from '@/types/hotels';
 
-import NavigationController from '../navigation-controller';
+import NavigationController from '../../shared/navigation-controller';
 import Heading from '../section-heading';
 import Hotel from './hotel';
 
@@ -22,7 +22,7 @@ const options = {
   },
 };
 
-const ExploreTheWorld = ({ hotels }: { hotels: IHotel[] }) => {
+const ExploreTheWorld = ({ hotels }: { hotels: IHotelWCity[] }) => {
   const { setSwiperRef, handleSwiperChange, handleCurrentStatus, status } =
     useNavigation();
   const isMobile = useMobileDetector();

@@ -1,8 +1,7 @@
 import _ from 'lodash';
 
-import { Card } from '@/components/ui';
-import { arrOfPassengers, passengerInitialState } from '@/data/data';
-import usePassengers from '@/store/passengers';
+import { arrOfPassengers } from '@/data/data';
+import { usePassengers } from '@/store';
 
 import CustomPopover from '../../input-popover';
 import SinglePassengerInput from './single-passenger-input';

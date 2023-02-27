@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMobileDetector, useNavigation } from '@/hooks';
 import { ICountryWCityCount } from '@/types/countries';
 
-import NavigationController from '../navigation-controller';
+import NavigationController from '../../shared/navigation-controller';
 import Heading from '../section-heading';
 import SingleTopTour from './single-top-tour';
 
@@ -74,7 +74,7 @@ const TopTour = ({ featuredCountries }: TopTourProps) => {
       >
         {featuredCountries.map((fCountry) => (
           <SwiperSlide key={fCountry._id}>
-            <SingleTopTour country={fCountry} />
+            <SingleTopTour entity={fCountry} />
           </SwiperSlide>
         ))}
       </Swiper>
