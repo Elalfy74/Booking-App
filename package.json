@@ -28,6 +28,7 @@
     "react-date-range": "^1.4.0",
     "react-dom": "18.2.0",
     "react-simple-star-rating": "^5.1.7",
+    "sharp": "^0.31.3",
     "swiper": "^8.4.5",
     "swr": "^2.0.3",
     "tailwindcss-radix": "^2.6.1",
